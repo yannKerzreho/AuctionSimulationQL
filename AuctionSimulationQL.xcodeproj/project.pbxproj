@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04B4D6202B1E5BAC0011935E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04B4D61F2B1E5BAC0011935E /* main.cpp */; };
-		04B4D6282B1E5FFA0011935E /* Qalgo.c in Sources */ = {isa = PBXBuildFile; fileRef = 04B4D6272B1E5FFA0011935E /* Qalgo.c */; };
-		04B4D62B2B1E60180011935E /* Function.c in Sources */ = {isa = PBXBuildFile; fileRef = 04B4D62A2B1E60180011935E /* Function.c */; };
+		04B4D6282B1E5FFA0011935E /* Qalgo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04B4D6272B1E5FFA0011935E /* Qalgo.cpp */; };
+		04B4D62B2B1E60180011935E /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04B4D62A2B1E60180011935E /* Function.cpp */; };
+		04B4D62E2B1F9F680011935E /* writeCSV.tpp in Sources */ = {isa = PBXBuildFile; fileRef = 04B4D62D2B1F9F680011935E /* writeCSV.tpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,9 +29,11 @@
 		04B4D61C2B1E5BAC0011935E /* AuctionSimulationQL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AuctionSimulationQL; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B4D61F2B1E5BAC0011935E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		04B4D6262B1E5FFA0011935E /* Qalgo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Qalgo.h; sourceTree = "<group>"; };
-		04B4D6272B1E5FFA0011935E /* Qalgo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Qalgo.c; sourceTree = "<group>"; };
+		04B4D6272B1E5FFA0011935E /* Qalgo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Qalgo.cpp; sourceTree = "<group>"; };
 		04B4D6292B1E60180011935E /* Function.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
-		04B4D62A2B1E60180011935E /* Function.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Function.c; sourceTree = "<group>"; };
+		04B4D62A2B1E60180011935E /* Function.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
+		04B4D62C2B1F9F680011935E /* writeCSV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = writeCSV.h; sourceTree = "<group>"; };
+		04B4D62D2B1F9F680011935E /* writeCSV.tpp */ = {isa = PBXFileReference; lastKnownFileType = text; path = writeCSV.tpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +67,11 @@
 			isa = PBXGroup;
 			children = (
 				04B4D6292B1E60180011935E /* Function.h */,
-				04B4D62A2B1E60180011935E /* Function.c */,
+				04B4D62A2B1E60180011935E /* Function.cpp */,
+				04B4D62C2B1F9F680011935E /* writeCSV.h */,
+				04B4D62D2B1F9F680011935E /* writeCSV.tpp */,
 				04B4D6262B1E5FFA0011935E /* Qalgo.h */,
-				04B4D6272B1E5FFA0011935E /* Qalgo.c */,
+				04B4D6272B1E5FFA0011935E /* Qalgo.cpp */,
 				04B4D61F2B1E5BAC0011935E /* main.cpp */,
 			);
 			path = AuctionSimulationQL;
@@ -129,8 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B4D6282B1E5FFA0011935E /* Qalgo.c in Sources */,
-				04B4D62B2B1E60180011935E /* Function.c in Sources */,
+				04B4D6282B1E5FFA0011935E /* Qalgo.cpp in Sources */,
+				04B4D62B2B1E60180011935E /* Function.cpp in Sources */,
+				04B4D62E2B1F9F680011935E /* writeCSV.tpp in Sources */,
 				04B4D6202B1E5BAC0011935E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

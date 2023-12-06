@@ -5,15 +5,14 @@
 //  Created by Yann Kerzreho on 04/12/2023.
 //
 
-#ifndef Qalgo_h
-#define Qalgo_h
-
-#include <stdio.h>
 #include <random>
 #include <cmath>
 #include <iostream>
 #include <vector>
 
+#ifndef Qalgo_h
+#define Qalgo_h
+#include <stdio.h>
 
 class Qalgo {
     private:
