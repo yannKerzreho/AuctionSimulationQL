@@ -1,6 +1,6 @@
 # AuctionSimulationQL
 
-This repository contains a C++ implementation of a simulation framework for auction scenarios using Q-learning. The simulation is designed to model interactions between two agents engaged in auctions over multiple iterations.
+This repository contains a C++ implementation of a simulation framework for auction scenarios using Q-learning. The simulation is designed to model interactions between two agents engaged in auctions over multiple iterations as presented in Artificial Intelligence and Auction Design by M. Banchio and A. Skrzypacz 2022. 
 
 ## Contents
 
