@@ -12,19 +12,6 @@
 #include <vector>
 #include <string>
 
-// Base case for recursion, writes the last element in the row
-template<typename T>
-void writeCSVRow(std::ofstream& outputFile, const T& element) {
-    outputFile << element << "\n";
-}
-
-// Recursive case for variadic template, writes elements separated by commas
-template<typename T, typename... Args>
-void writeCSVRow(std::ofstream& outputFile, const T& first, const Args&... rest) {
-    outputFile << first << ",";
-    writeCSVRow(outputFile, rest...);
-}
-
 // Helper function to check if all vectors have the same size
 template <typename T>
 size_t checkVectorSizes(const T& first) {
@@ -38,6 +25,19 @@ size_t checkVectorSizes(const T& first, const Args&... rest) {
         std::exit(1);  // Exit the program
     }
     return first.size();
+}
+
+// Base case for recursion, writes the last element in the row
+template<typename T>
+void writeCSVRow(std::ofstream& outputFile, const T& element) {
+    outputFile << element << "\n";
+}
+
+// Recursive case for variadic template, writes elements separated by commas
+template<typename T, typename... Args>
+void writeCSVRow(std::ofstream& outputFile, const T& first, const Args&... rest) {
+    outputFile << first << ",";
+    writeCSVRow(outputFile, rest...);
 }
 
 // Variadic template function to write a list of vectors to a CSV file

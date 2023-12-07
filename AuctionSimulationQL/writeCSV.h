@@ -12,6 +12,8 @@
 
 #include "writeCSV.tpp"  // Include the template implementation
 
+std::vector<double> findCol(std::vector<std::vector<double>> data, const int j);
+
 // Base case for recursion, writes the last element in the row
 template <typename T>
 void writeCSVRow(std::ofstream& outputFile, const T& element);
