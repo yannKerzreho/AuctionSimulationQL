@@ -7,15 +7,35 @@
 
 #include <iostream>
 #include "writeCSV.h"
+#include "Function.h"
+
 
 int main() {
-    std::vector<int> vec1 = {1, 2, 3};
-    std::vector<int> vec2 = {4, 5, 6};
-    std::vector<int> vec3 = {7, 8, 9};
+    
+    std::vector<double> possible_bet;
+    double step = 0.05;
+    for (double value = 0.05; value < 1.0; value += step) {
+        possible_bet.push_back(value);
+    }
 
-    // Example usage
-    writeCSV("/Users/yannkerzreho/Documents/AC/try.csv", vec1, vec2, vec3);
+    double alpha = 0.05;
+    double beta = 0;
+    double gamma = 0.99;
+    double epsilon = 0.025;
+    int num_iterations = 1000000;
+    double pricer = 1;
+    double opt = 10;
+    
+    std::vector<std::vector<double>> combinations = generateCombinations( alpha, beta, gamma, epsilon, opt, num_iterations, pricer);
 
-    return 0;
+        // Print the generated combinations
+        for (const auto& combination : combinations) {
+            for (const auto& value : combination) {
+                std::cout << value << " ";
+            }
+            std::cout << "\n";
+        }
+
+        return 0;
 }
 
