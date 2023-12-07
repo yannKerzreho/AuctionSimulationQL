@@ -4,9 +4,9 @@ This repository contains a C++ implementation of a simulation framework for auct
 
 ## Main Contents
 
-- **simulation**: The main simulation function (`simulation`) that models the auction process, taking various parameters like alpha, beta, gamma and epsilon (for the parametrization of QL algorithm). opt is used to initialize Q-matrix, num_iterations is the number of round play by the algorithme, possible_bet are the available actions (with a price set at 1), and pricer manage the auction design (1 for a first price and 2 for a second price, between 1 and 2 for any convex combinaison).
+- **simulation**: The main simulation function (`simulation`) that models the auction process, taking various parameters like alpha, beta, gamma and epsilon (for the parametrization of QL algorithm). opt is used to initialize Q-matrix, num_iterations set the number of round play by the algorithm, possible_bet are the available actions (with a price set at 1), and pricer manage the auction design (1 for a first price and 2 for a second price, between 1 and 2 for any convex combinaison).
 
-- **findConvergence**: The function (`findConvergence`) analyzes the convergence of Q-algo over combinaison of a specified parameters (used to run (`simulation`)). num_it_param set how many run for each set of parameter and numConv set the number of iteration used to assume convergence.
+- **findConvergence**: The function (`findConvergence`) analyzes the convergence of Q-algo over combinaison of a specified parameters (used to run (`simulation`)). num_it_param set how many run is done for each combinaison of parameter and numConv set the number of iteration used to assume convergence.
 
 ## Additional function
 
