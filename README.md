@@ -2,23 +2,17 @@
 
 This repository contains a C++ implementation of a simulation framework for auction scenarios using Q-learning. The simulation is designed to model interactions between two agents engaged in auctions over multiple iterations as presented in Artificial Intelligence and Auction Design by M. Banchio and A. Skrzypacz 2022. 
 
-## Contents
+## Main Contents
 
-- **simulation**: The main simulation function (`simulation`) that models the auction process, taking various parameters like alpha, beta, gamma, epsilon, opt, num_iterations, possible_bet, and pricer.
+- **simulation**: The main simulation function (`simulation`) that models the auction process, taking various parameters like alpha, beta, gamma and epsilon (for the parametrization of QL algorithme). opt is used to initialize Q-matrix, num_iterations is the number of round play by the algorithme, possible_bet are the available actions (with a price set at 1), and pricer manage the auction design (1 for a first price and 2 for a second price, between 1 and 2 for any convex combinaison).
 
-- **findConvergence**: A utility function (`findConvergence`) that analyzes the convergence of auction actions over a specified number of iterations.
+- **findConvergence**: The function (`findConvergence`) analyzes the convergence of Q-algo over combinaison of a specified parameters (used to run (`simulation`)). num_it_param set how many run for each set of parameter and numConv set the number of iteration used to assume convergence.
 
-- **simulationStoch** and **simulationStochE**: Extensions of the main simulation with stochastic elements, introducing randomness into the agent's decisions.
+## Additional function
 
-- **generateCombinations**: A function (`generateCombinations`) that generates combinations of parameters for simulations.
+- **findCol**: To extract from a array a colum the function (`findCol`) take as argument a `std::vector<std::vector<double>>`and a `int` for the index of the colum.
 
-- **simulConvergence**: The core function (`simulConvergence`) orchestrating multiple simulations with varying parameter combinations and collecting convergence results.
-
-- **main**: An example `main` function demonstrating how to use the simulation framework with predefined parameter sets.
-
-## Usage
-
-To use the simulation framework, include the necessary headers (`Function.h` and others) in your C++ project. Define your parameters, such as alpha, beta, gamma, epsilon, opt, num_iterations, possible_bet, pricer, num_it_param, and numConv. Then call the `simulConvergence` function to run simulations and collect convergence results.
+- **writeCSV**: Creat a .csv at the path (first argument) with the set of vectors used as argument.
 
 ### Example
 
