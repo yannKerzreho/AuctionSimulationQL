@@ -16,7 +16,7 @@
 #include <fstream>
 #include <vector>
 
-std::vector<std::vector<int>> simulation(double& alpha, double& beta, double& gamma, double& epsilon, double& opt, int& num_iterations, const std::vector<double>& possible_bet, double& pricer){
+std::vector<std::vector<int>> simulation(double& alpha, double& beta, double& gamma, double& epsilon, double opt, int num_iterations, const std::vector<double>& possible_bet, double& pricer){
     
     int num_actions = possible_bet.size();
 

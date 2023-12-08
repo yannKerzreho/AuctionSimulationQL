@@ -17,7 +17,7 @@
 #define Function_h
 #include <stdio.h>
 
-std::vector<std::vector<int>> simulation(double& alpha, double& beta, double& gamma, double& epsilon, double& opt, int& num_iterations, const std::vector<double>& possible_bet, double& pricer);
+std::vector<std::vector<int>> simulation(double& alpha, double& beta, double& gamma, double& epsilon, double opt, int num_iterations, const std::vector<double>& possible_bet, double& pricer);
 
 std::vector<int> findConvergence(const std::vector<std::vector<int>>& actions, const int& numIt);
 
