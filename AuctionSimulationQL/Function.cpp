@@ -16,7 +16,7 @@
 #include <fstream>
 #include <vector>
 
-std::vector<std::vector<int>> simulation(double alpha, double beta, double gamma, double epsilon, double opt, int num_iterations, const std::vector<double>& possible_bet, double pricer) {
+std::vector<std::vector<int>> simulation(double& alpha, double& beta, double& gamma, double& epsilon, double& opt, int& num_iterations, const std::vector<double>& possible_bet, double& pricer){
     
     int num_actions = possible_bet.size();
 
@@ -65,7 +65,7 @@ std::vector<std::vector<int>> simulation(double alpha, double beta, double gamma
     return actions;
 }
 
-std::vector<int> findConvergence(const std::vector<std::vector<int>> actions, const int numIt) {
+std::vector<int> findConvergence(const std::vector<std::vector<int>>& actions, const int& numIt){
     
     unsigned long numActions = actions.size(); // Nombre de colonnes d'actions
     
@@ -87,6 +87,56 @@ std::vector<int> findConvergence(const std::vector<std::vector<int>> actions, co
         // Si aucune colonne n'a été trouvée avec des valeurs constantes
         return {std::vector<int> {-100, -100}};
 }
+
+
+std::vector<std::vector<double>> generateCombinations(const std::vector<double>& alpha, const std::vector<double>& beta, const std::vector<double>& gamma, const std::vector<double>& epsilon, const std::vector<double>& opt, const std::vector<int>& num_iterations, const std::vector<double>& pricer) {
+    
+    std::vector<std::vector<double>> combinations;
+
+    for (const auto& a : alpha) {
+        for (const auto& b : beta) {
+            for (const auto& g : gamma) {
+                for (const auto& e : epsilon) {
+                    for (const auto& o : opt) {
+                        for (const auto& n : num_iterations) {
+                            for (const auto& p : pricer) {
+                                combinations.push_back({a, b, g, e, o, static_cast<double>(n), p});
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return combinations;
+}
+
+std::vector<std::vector<double>> simulConvergence(const std::vector<double>& alpha, const std::vector<double>& beta, const std::vector<double>& gamma, const std::vector<double>& epsilon, const std::vector<double>& opt, const std::vector<int>& num_iterations, const std::vector<double>& possible_bet, const std::vector<double>& pricer, const int& num_it_param, const int& numConv){
+    
+    std::vector<std::vector<double>> results;
+ 
+    std::vector<std::vector<double>> combinations = generateCombinations(alpha, beta, gamma, epsilon, opt, num_iterations, pricer);
+    
+    for (int i = 0; i < combinations.size(); i++) {
+        
+        std::cout << "alpha : " << combinations[i][0] << " | beta : " << combinations[i][1] << " | gamma : " << combinations[i][2] << " | epsilon : " << combinations[i][3] << " | opt : " << combinations[i][4] << " | num_iterations : " << combinations[i][5] << " | pricer : " << combinations[i][6] << std::endl;
+
+        for (int it = 0; it < num_it_param; it++) {
+           
+            std::vector<std::vector<int>> sim = simulation(combinations[i][0], combinations[i][1], combinations[i][2], combinations[i][3], static_cast<int>(combinations[i][4]), combinations[i][5], possible_bet, combinations[i][6]);
+                        
+            std::vector<int> conv = findConvergence(sim, numConv);
+            
+            std::vector<double> res = {static_cast<double>(conv[0]), static_cast<double>(conv[1]), combinations[i][0], combinations[i][1], combinations[i][2], combinations[i][3], combinations[i][4], combinations[i][5], combinations[i][6]};
+            
+            results.push_back(res);
+        }
+    }
+    return results;
+}
+
+// Additional variation
 
 std::vector<std::vector<int>> simulationStoch(double a, double p, double alpha, double beta, double gamma, double epsilon, double opt, int num_iterations, const std::vector<double>& possible_bet, double pricer) {
     
@@ -238,51 +288,4 @@ std::vector<std::vector<int>> simulationStochE(int numE, double a, double p, dou
         
     }
     return actions;
-}
-
-std::vector<std::vector<double>> generateCombinations(const std::vector<double>& alpha, const std::vector<double>& beta, const std::vector<double>& gamma, const std::vector<double>& epsilon, const std::vector<double>& opt, const std::vector<int>& num_iterations, const std::vector<double>& pricer) {
-    
-    std::vector<std::vector<double>> combinations;
-
-    for (const auto& a : alpha) {
-        for (const auto& b : beta) {
-            for (const auto& g : gamma) {
-                for (const auto& e : epsilon) {
-                    for (const auto& o : opt) {
-                        for (const auto& n : num_iterations) {
-                            for (const auto& p : pricer) {
-                                combinations.push_back({a, b, g, e, o, static_cast<double>(n), p});
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return combinations;
-}
-
-std::vector<std::vector<double>> simulConvergence(const std::vector<double> alpha, const std::vector<double> beta, const std::vector<double> gamma, const std::vector<double> epsilon, const std::vector<double> opt, const std::vector<int> num_iterations, const std::vector<double>& possible_bet, const std::vector<double> pricer, const int num_it_param, const int numConv){
-    
-    std::vector<std::vector<double>> results;
- 
-    std::vector<std::vector<double>> combinations = generateCombinations(alpha, beta, gamma, epsilon, opt, num_iterations, pricer);
-    
-    for (int i = 0; i < combinations.size(); i++) {
-        
-        std::cout << "alpha : " << combinations[i][0] << " | beta : " << combinations[i][1] << " | gamma : " << combinations[i][2] << " | epsilon : " << combinations[i][3] << " | opt : " << combinations[i][4] << " | num_iterations : " << combinations[i][5] << " | pricer : " << combinations[i][6] << std::endl;
-
-        for (int it = 0; it < num_it_param; it++) {
-           
-            std::vector<std::vector<int>> sim = simulation(combinations[i][0], combinations[i][1], combinations[i][2], combinations[i][3], static_cast<int>(combinations[i][4]), combinations[i][5], possible_bet, combinations[i][6]);
-                        
-            std::vector<int> conv = findConvergence(sim, numConv);
-            
-            std::vector<double> res = {static_cast<double>(conv[0]), static_cast<double>(conv[1]), combinations[i][0], combinations[i][1], combinations[i][2], combinations[i][3], combinations[i][4], combinations[i][5], combinations[i][6]};
-            
-            results.push_back(res);
-        }
-    }
-    return results;
 }
