@@ -23,7 +23,7 @@ int main() {
     std::vector<double> gamma = {0.99, 0.95};
     std::vector<double> epsilon = {0.25};
     std::vector<double> opt = {10};
-    std::vector<int> num_iterations = {1000000};
+    std::vector<int> num_iterations = {100000};
     std::vector<double> pricer = {1};
     int num_it_param = 10;
     int numConv = 10000;
