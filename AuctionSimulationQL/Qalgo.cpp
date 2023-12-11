@@ -39,7 +39,7 @@ void Qalgo::update_q(int state, int action, double reward, int next_state) {
 
 bool Qalgo::is_greedy(int t) {
     double eps = epsilon * std::exp(-beta * t);
-    return (static_cast<double>(rand()) / RAND_MAX < eps);
+    return (static_cast<double>(rand()) / RAND_MAX > eps);
 }
 
 int Qalgo::choose_action(int state, bool isgreedy) {

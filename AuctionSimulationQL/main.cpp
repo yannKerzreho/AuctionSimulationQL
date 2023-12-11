@@ -26,7 +26,7 @@ int main() {
     std::vector<int> num_iterations = {100000};
     std::vector<double> pricer = {1};
     int num_it_param = 10;
-    int numConv = 10000;
+    int numConv = 100000;
     
     std::vector<std::vector<double>> conv = simulConvergence(alpha, beta, gamma, epsilon, opt, num_iterations, possible_bet, pricer, num_it_param, numConv);
     

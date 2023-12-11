@@ -32,10 +32,25 @@ std::vector<std::vector<int>> simulation(double& alpha, double& beta, double& ga
         bool A_greed = A.is_greedy(t);
         bool B_greed = B.is_greedy(t);
 
-        int a_A = A.choose_action(current_state_A, A_greed);
-        int a_B = B.choose_action(current_state_B, B_greed);
+        int a_Agreedy = A.choose_action(current_state_A, true);
+        int a_Bgreedy = B.choose_action(current_state_B, true);
+        
+        int a_A;
+        int a_B;
+        
+        if(A_greed){
+            a_A = a_Agreedy;
+        } else {
+            a_A = A.choose_action(current_state_A, false);
+        }
+        
+        if(B_greed){
+            a_B = a_Bgreedy;
+        } else {
+            a_B = B.choose_action(current_state_B, false);
+        }
 
-        std::vector<int> action_pair = {A.choose_action(current_state_A, false), B.choose_action(current_state_B, false)};
+        std::vector<int> action_pair = {a_Agreedy, a_Bgreedy};
         actions.push_back(action_pair);
 
         std::vector<int> bets = {a_A, a_B};
@@ -76,39 +91,38 @@ std::vector<int> findConvergence(const std::vector<std::vector<int>>& actions, c
     for (unsigned long i = numActions - 2; i >= numActions - numIt; i--) {
         if (actions[i][0] != constantValue0 || actions[i][1] != constantValue1) {
             isConstant = false;
-            break; // La valeur n'est plus constante, inutile de continuer
+            break;
         }
     }
     
     if (isConstant) {
         std::vector<int> result = {constantValue0, constantValue1};
         return result;
-        }
-        // Si aucune colonne n'a été trouvée avec des valeurs constantes
-        return {std::vector<int> {-100, -100}};
+    }
+    // Si aucune colonne n'a été trouvée avec des valeurs constantes
+    return {std::vector<int> {-100, -100}};
 }
 
 
 std::vector<std::vector<double>> generateCombinations(const std::vector<double>& alpha, const std::vector<double>& beta, const std::vector<double>& gamma, const std::vector<double>& epsilon, const std::vector<double>& opt, const std::vector<int>& num_iterations, const std::vector<double>& pricer) {
     
     std::vector<std::vector<double>> combinations;
-
-    for (const auto& a : alpha) {
-        for (const auto& b : beta) {
-            for (const auto& g : gamma) {
-                for (const auto& e : epsilon) {
-                    for (const auto& o : opt) {
-                        for (const auto& n : num_iterations) {
-                            for (const auto& p : pricer) {
-                                combinations.push_back({a, b, g, e, o, static_cast<double>(n), p});
+    for (const auto& n : num_iterations) {
+        double dbl_n = static_cast<double>(n);
+        for (const auto& a : alpha) {
+            for (const auto& b : beta) {
+                for (const auto& g : gamma) {
+                    for (const auto& e : epsilon) {
+                        for (const auto& o : opt) {
+                                for (const auto& p : pricer) {
+                                    combinations.push_back({a, b, g, e, o, dbl_n, p});
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
-
     return combinations;
 }
 
