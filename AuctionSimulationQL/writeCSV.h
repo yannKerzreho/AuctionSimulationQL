@@ -14,6 +14,8 @@
 
 std::vector<double> findCol(std::vector<std::vector<double>> data, const int j);
 
+std::vector<int> findColint(std::vector<std::vector<int>> data, const int j);
+
 // Base case for recursion, writes the last element in the row
 template <typename T>
 void writeCSVRow(std::ofstream& outputFile, const T& element);

@@ -44,8 +44,6 @@ bool Qalgo::is_greedy(int t) {
 
 int Qalgo::choose_action(int state, bool isgreedy) {
     if (isgreedy) {
-        return rand() % num_actions;
-    } else {
         int best_action = 0;
         for (int action = 1; action < num_actions; action++) {
             if (Q[state][action] > Q[state][best_action]) {
@@ -53,5 +51,7 @@ int Qalgo::choose_action(int state, bool isgreedy) {
             }
         }
         return best_action;
+    } else {
+        return rand() % num_actions;
     }
 }
